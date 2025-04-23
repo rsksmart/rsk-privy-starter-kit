@@ -20,9 +20,8 @@ export default function ConnectButton({ className }: ConnectButtonProps) {
 
   const { ready, authenticated, login, logout } = usePrivy();
   const { wallets } = useWallets();
-  const { address, chain, chainId } = useAccount();
-  console.log(chain);
-  console.log(chainId);
+  const { address, chain } = useAccount();
+ 
 
   const { data: balanceData } = useBalance({
     address: address,

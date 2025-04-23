@@ -33,13 +33,15 @@ const privyConfig: PrivyClientConfig = {
   supportedChains: [rootstock, rootstockTestnet],
 };
 
+const appId = import.meta.env.VITE_PRIVY_APP_ID ;
+
 export default function Providers({ children }: { children: React.ReactNode }) {
+  
   return (
     <PrivyProvider
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore
-      appId="cm9djsotz028nih0n0y6gsreb"
-      clientId="client-WY5itZyfwpHNt1terGEwasCdPZaToUAQnX73GdNPA1WxX"
+      appId={appId}
       config={privyConfig}
     >
       <QueryClientProvider client={queryClient}>
