@@ -1,12 +1,12 @@
-[![OpenSSF Scorecard](https://api.scorecard.dev/projects/github.com/rsksmart/rsk-wagmi-starter-kit/badge)](https://scorecard.dev/viewer/?uri=github.com/rsksmart/rsk-wagmi-starter-kit)
-[![CodeQL](https://github.com/rsksmart/rsk-wagmi-starter-kit/workflows/CodeQL/badge.svg)](https://github.com/rsksmart/rsk-wagmi-starter-kit/actions?query=workflow%3ACodeQL)
+[![OpenSSF Scorecard](https://api.scorecard.dev/projects/github.com/rsksmart/rsk-privy-starter-kit/badge)](https://scorecard.dev/viewer/?uri=github.com/rsksmart/rsk-privy-starter-kit)
+[![CodeQL](https://github.com/rsksmart/rsk-privy-starter-kit/workflows/CodeQL/badge.svg)](https://github.com/rsksmart/rsk-privy-starter-kit/actions?query=workflow%3ACodeQL)
 <img src="rootstock-logo.jpg" alt="RSK Logo" style="width:100%; height: auto;" />
 
-## Rootstock Wagmi & Shadcn Starter Kit
+## Rootstock Wagmi & Privy
 
 This starter kit provides a foundation for building decentralized applications (dApps) on the Rootstock blockchain using [React](https://react.dev/learn), [Wagmi](https://wagmi.sh/) and [Shadcn](https://ui.shadcn.com/) libraries. It includes features such as:
 
-- Integration with [Rainbowkit](https://www.rainbowkit.com/) for wallet connection and interacting with smart contracts
+- Integration with [Privy](https://www.privy.io/user-guide) for wallet connection and interacting with smart contracts
 - Sample integrations of interactions with tokens like ERC20, ERC721, and ERC1155.
 - Prettier and eslint configured for project files.
 - Tailwindcss and Shadcn configured for style customization.
@@ -23,8 +23,7 @@ Check the live demo here: https://rsk-wagmi-starter-kit.vercel.app/
 │   ├── assets
 │   ├── components
 │   ├── config
-│   │   ├── providers.tsx
-│   │   ├── rainbowkitConfig.ts
+│   │   ├── providers.tsx  // Privy setup file
 │   │   └── wagmiProviderConfig.ts
 │   ├── lib
 │   │   └── utils
@@ -45,8 +44,8 @@ Check the live demo here: https://rsk-wagmi-starter-kit.vercel.app/
 #### 1. Clone Repository
 
 ```shell
-git clone https://github.com/chrisarevalodev/rsk-wagmi-starter-kit.git
-cd rsk-wagmi-starter-kit
+git clone https://github.com/JuanAgudeloRSL/rsk-privy-starter-kit
+cd rsk-privy-starter-kit
 ```
 
 #### 2. Configure Project
@@ -54,11 +53,11 @@ cd rsk-wagmi-starter-kit
 Copy the `.env.example` file and rename it to `.env`, and add a variables:
 
 ```shell
-VITE_WC_PROJECT_ID='your Reown (prev wallet connect) key'
+VITE_PRIVY_APP_ID='your Privy App ID'
 VITE_BUNDLER_API_KEY='etherspot_public_key'
 VITE_CUSTOM_BUNDLER_URL=https://rootstocktestnet-bundler.etherspot.io/
 ```
-> **Note**: Go to [Reown Dashboard](https://cloud.reown.com/sign-in) and create a project, copy the project ID and paste it on `VITE_WC_PROJECT_ID`.
+> **Note**: Go to [Privy Dashboard](https://dashboard.privy.io/) and create a project, copy the project ID and paste it on `VITE_PRIVY_APP_ID`.
 
 #### 3. Install Dependencies
 
