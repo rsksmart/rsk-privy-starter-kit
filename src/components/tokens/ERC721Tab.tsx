@@ -2,15 +2,17 @@ import Button from "@/components/ui/button";
 // import { Input } from "@/components/ui/input";
 // import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
-import { ConnectButton } from "@rainbow-me/rainbowkit";
+
 import { useToast } from "@/components/ui/use-toast";
-import { useState } from "react";
+import { JSX, useState } from "react";
 import { useAccount, useWriteContract, useReadContract } from "wagmi";
 import { abi } from "@/assets/abis/ERC721abi";
 import { ERC721_ADDRESS } from "@/lib/constants";
 import Loader from "@/components/ui/loader";
 import { waitForTransactionReceipt } from "wagmi/actions";
-import { rainbowkitConfig } from "@/config/rainbowkitConfig";
+import { wagmiConfig } from "@/config/providers";
+import ConnectButton from "../ConnectButton";
+
 
 export default function ERC721Tab(): JSX.Element {
   const { toast } = useToast();
@@ -35,7 +37,7 @@ export default function ERC721Tab(): JSX.Element {
         functionName: "safeMint",
         args: [address],
       });
-      await waitForTransactionReceipt(rainbowkitConfig, {
+      await waitForTransactionReceipt(wagmiConfig, {
         confirmations: 1,
         hash: txHash,
       });
@@ -71,7 +73,7 @@ export default function ERC721Tab(): JSX.Element {
             <p>Make sure your wallet is connected.</p>
           </div>
           <div className="flex justify-center">
-            <ConnectButton showBalance={false} chainStatus={"icon"} />
+            <ConnectButton/>
           </div>
           <div className="flex items-center gap-4">
             <span className="font-neueMachinaBold px-2 pt-[5px] text-black rounded-full bg-orange-400 grid place-items-center">

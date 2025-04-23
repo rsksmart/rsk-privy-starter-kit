@@ -1,14 +1,15 @@
-import { ConnectButton } from "@rainbow-me/rainbowkit";
+
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import Button from "@/components/ui/button";
-import { useState } from "react";
+import { JSX, useState } from "react";
 import Loader from "@/components/ui/loader";
 import { useAccount, useReadContract, useWriteContract } from "wagmi";
 import { abi } from "@/assets/abis/ERC20abi";
 import { useToast } from "@/components/ui/use-toast";
 import { ERC20_ADDRESS } from "@/lib/constants";
-import { rainbowkitConfig } from "@/config/rainbowkitConfig";
 import { waitForTransactionReceipt } from "wagmi/actions";
+import { wagmiConfig } from "@/config/providers";
+import ConnectButton from "../ConnectButton";
 
 export default function ERC20Tab(): JSX.Element {
   const { toast } = useToast();
@@ -34,7 +35,7 @@ export default function ERC20Tab(): JSX.Element {
         args: [address, 100],
       });
 
-      await waitForTransactionReceipt(rainbowkitConfig, {
+      await waitForTransactionReceipt(wagmiConfig, {
         confirmations: 1,
         hash: txHash,
       });
@@ -73,7 +74,7 @@ export default function ERC20Tab(): JSX.Element {
           <p>Make sure your wallet is connected.</p>
         </div>
         <div className="flex justify-center">
-          <ConnectButton showBalance={false} chainStatus={"icon"} />
+          <ConnectButton />
         </div>
         <div className="flex items-center gap-4">
           <span className="font-neueMachinaBold px-2 pt-[5px] text-black rounded-full bg-orange-400 grid place-items-center">

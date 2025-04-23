@@ -1,6 +1,7 @@
 import Logo from "@/components/ui/logo";
-import { ConnectButton } from "@rainbow-me/rainbowkit";
+import ConnectButton from "./ConnectButton";
 import { Link } from "react-router-dom";
+import { JSX } from "react";
 
 export default function Navbar(): JSX.Element {
   return (
@@ -8,10 +9,7 @@ export default function Navbar(): JSX.Element {
       <Link to="/">
         <Logo className="w-[150px] h-[50px]" />
       </Link>
-      <ConnectButton
-        showBalance={false}
-        chainStatus={{ smallScreen: "none", largeScreen: "icon" }}
-      />
+      <ConnectButton/>
     </nav>
   );
 }
