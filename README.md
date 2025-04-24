@@ -11,7 +11,7 @@ This starter kit provides a foundation for building decentralized applications (
 - Prettier and eslint configured for project files.
 - Tailwindcss and Shadcn configured for style customization.
 
-Check the live demo here: https://rsk-wagmi-starter-kit.vercel.app/
+Check the live demo here: https://rsk-privy-starter-kit.vercel.app/
 
 ## Project Structure
 
