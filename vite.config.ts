@@ -19,4 +19,12 @@ export default defineConfig({
       plugins: [NodeGlobalsPolyfillPlugin({ process: true, buffer: true })],
     },
   },
+  server: {
+    host: '0.0.0.0',     
+    port: 5173,          
+    hmr: {
+      clientPort: 443,   
+    },
+    allowedHosts: true, 
+  },
 });
