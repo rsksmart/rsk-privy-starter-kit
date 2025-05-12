@@ -12,7 +12,7 @@
   "dependencies": {
     "@esbuild-plugins/node-globals-polyfill": "^0.2.3",
     "@etherspot/prime-sdk": "^1.9.2",
-    "@privy-io/react-auth": "1.94.0",
+    "@privy-io/react-auth": "2.13.1",
     "@privy-io/wagmi": "0.2.12",
     "@radix-ui/react-select": "^2.2.2",
     "@radix-ui/react-tabs": "^1.1.9",
