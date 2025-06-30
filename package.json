@@ -29,7 +29,7 @@
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "react-loader-spinner": "^6.1.6",
-    "react-router-dom": "^6.30.0",
+    "react-router-dom": "^7.6.3",
     "subscriptions-transport-ws": "^0.11.0",
     "tailwind-merge": "^2.6.0",
     "tailwindcss-animate": "^1.0.7",
