@@ -44,7 +44,7 @@ Check the live demo here: https://rsk-privy-starter-kit.vercel.app/
 #### 1. Clone Repository
 
 ```shell
-git clone https://github.com/JuanAgudeloRSL/rsk-privy-starter-kit
+git clone https://github.com/rsksmart/rsk-privy-starter-kit
 cd rsk-privy-starter-kit
 ```
 
