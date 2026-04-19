@@ -15,6 +15,7 @@ dist-ssr
 # Environment files
 .env
 .env.local
+server/.env
 
 # Editor directories and files
 .vscode/*
@@ -28,8 +29,17 @@ dist-ssr
 *.sw?
 
 # package manager
-
 .package-lock.json
-yarn.lock
+package-lock.json
 pnpm-lock.yaml
 .vercel
+
+# Replit development artifacts — do not commit to the repository
+.replit
+replit.md
+"REPLIT README.md"
+attached_assets/
+generated-icon.png
+
+# M8: Development debug logs — local only, not for the repository
+bug_resolved.md

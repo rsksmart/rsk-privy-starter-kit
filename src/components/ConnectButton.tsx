@@ -1,14 +1,12 @@
-'use client';
-
 /**
  * ConnectButton Component
  *
  * A wallet connection button for Web3 applications showing essential account info.
  */
 
-import { usePrivy, useWallets } from '@privy-io/react-auth';
-import { useState, useRef, useEffect } from 'react';
-import { useAccount,  useBalance } from 'wagmi';
+import { usePrivy, useWallets } from "@privy-io/react-auth";
+import { useState, useRef, useEffect } from "react";
+import { useAccount, useBalance } from "wagmi";
 
 interface ConnectButtonProps {
   className?: string;
@@ -21,7 +19,6 @@ export default function ConnectButton({ className }: ConnectButtonProps) {
   const { ready, authenticated, login, logout } = usePrivy();
   const { wallets } = useWallets();
   const { address, chain } = useAccount();
- 
 
   const { data: balanceData } = useBalance({
     address: address,
@@ -29,19 +26,23 @@ export default function ConnectButton({ className }: ConnectButtonProps) {
 
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
+      if (
+        dropdownRef.current &&
+        !dropdownRef.current.contains(e.target as Node)
+      ) {
         setIsOpen(false);
       }
     };
 
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
   if (!ready) return null;
 
   const activeWallet = wallets?.[0];
-  const formatAddress = (addr: string) => `${addr.slice(0, 6)}...${addr.slice(-4)}`;
+  const formatAddress = (addr: string) =>
+    `${addr.slice(0, 6)}...${addr.slice(-4)}`;
 
   const toggleDropdown = () => setIsOpen(!isOpen);
   const handleLogout = () => {
@@ -84,19 +85,19 @@ export default function ConnectButton({ className }: ConnectButtonProps) {
                   </span>
                 </div>
               </div>
-              
+
               {/* Balance display */}
               <div className="p-3 border-b border-gray-700">
                 <div className="flex items-center justify-between">
                   <span className="text-sm text-gray-400">Balance</span>
                   <span className="text-sm font-medium text-white">
-                    {balanceData 
+                    {balanceData
                       ? `${parseFloat(balanceData.formatted).toFixed(4)} ${balanceData.symbol}`
-                      : '0'}
+                      : "0"}
                   </span>
                 </div>
               </div>
-              
+
               {/* Address display */}
               <div className="p-3 border-b border-gray-700">
                 <div className="flex flex-col gap-1">

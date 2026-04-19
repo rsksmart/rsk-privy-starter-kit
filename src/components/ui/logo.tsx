@@ -1,6 +1,6 @@
 export default function Logo(
   props: React.SVGProps<SVGSVGElement>
-): JSX.Element {
+): React.JSX.Element {
   return (
     <svg
       width={500}

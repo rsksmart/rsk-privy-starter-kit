@@ -1,9 +1,10 @@
+import React from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import ERC20Tab from "./ERC20Tab";
 import ERC721Tab from "./ERC721Tab";
 import ERC1155Tab from "./ERC1155Tab";
 
-export default function TokenTabs(): JSX.Element {
+export default function TokenTabs(): React.JSX.Element {
   return (
     <section className=" grid place-items-center" id="tabs">
       <Tabs

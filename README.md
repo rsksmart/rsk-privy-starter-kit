@@ -56,6 +56,8 @@ Copy the `.env.example` file and rename it to `.env`, and add a variables:
 VITE_PRIVY_APP_ID='your Privy App ID'
 VITE_BUNDLER_API_KEY='etherspot_public_key'
 VITE_CUSTOM_BUNDLER_URL=https://rootstocktestnet-bundler.etherspot.io/
+VITE_CONTENT_PAYWALL_ADDRESS=0xb5C7ED1CEd1098974FDf2a9060948F13138e9dC6
+VITE_API_URL=http://localhost:3001
 ```
 > **Note**: Go to [Privy Dashboard](https://dashboard.privy.io/) and create a project, copy the project ID and paste it on `VITE_PRIVY_APP_ID`.
 
@@ -74,3 +76,85 @@ yarn
 ```shell
 yarn dev
 ```
+
+---
+
+## ContentPaywall Example — SocialFi Paywall Demo
+
+This starter kit includes **ContentPaywall** example demonstrating how to gate premium content behind on-chain payments on Rootstock. Navigate to `/dashboard` to explore it.
+
+### Architecture
+
+```
+User pays rBTC  →  tx confirmed on-chain
+      ↓
+Frontend calls   POST /api/content/verify-access  { address, contentId }
+      ↓
+Backend verifies hasAccess(address, contentId) ON-CHAIN via viem
+      ↓  (access confirmed)
+Backend issues   JWT { address, contentId, exp: 24h }
+      ↓
+Frontend calls   GET /api/content/:id/full
+                 Authorization: Bearer <JWT>
+      ↓
+Backend returns  { fullContent }  ← never in the JS bundle
+```
+
+**Premium content strings never exist in the JavaScript bundle.** They live exclusively on the backend and are only served after server-side on-chain verification.
+
+### Running the Backend Server
+
+The paywall backend is a standalone Express server in the `server/` directory.
+
+**1. Configure server environment** — create `server/.env` (see `server/.env.example`):
+
+```shell
+JWT_SECRET=$(openssl rand -hex 64)
+CONTENT_PAYWALL_ADDRESS=0xb5C7ED1CEd1098974FDf2a9060948F13138e9dC6
+RSK_RPC_URL=https://public-node.testnet.rsk.co
+PORT=3001
+CORS_ORIGINS=http://localhost:5173
+```
+
+**2. Install server dependencies:**
+
+```shell
+cd server && npm install
+```
+
+For production or CI, prefer `npm ci` in `server/` when `server/package-lock.json` is present for deterministic installs.
+
+**3. Start the server** (in a separate terminal):
+
+```shell
+cd server && npm run dev
+```
+
+### Running Tests
+
+```shell
+# Frontend unit tests (contract utilities, PaymentModal, ContentCard)
+yarn test
+
+# Backend integration tests (verify-access flow, JWT gating; supertest + mocked chain)
+cd server && npm install && npm test
+```
+
+From the repository root you can run both suites:
+
+```shell
+yarn test && cd server && npm test
+```
+
+### Production deployment (server)
+
+- Set `NODE_ENV=production` and use a long random `JWT_SECRET` (the server refuses secrets shorter than 32 characters in production).
+- Set `TRUST_PROXY=1` when the API sits behind nginx, Fly.io, Render, or similar so per-IP rate limits remain accurate.
+- Restrict `CORS_ORIGINS` to your real frontend origin(s); keep `server/.env` out of version control.
+
+### Contract
+
+The `ContentPaywall` Solidity source is included at [`contracts/ContentPaywall.sol`](contracts/ContentPaywall.sol).
+See [`contracts/README.md`](contracts/README.md) for deployment instructions and admin trust assumptions (including the `revokeAccess` no-refund disclosure).
+
+> **Security note**: The contract enforces `require(msg.value == price)` — exact-match payment validation. Clients cannot submit incorrect amounts.

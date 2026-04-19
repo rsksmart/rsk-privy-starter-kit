@@ -1,3 +1,4 @@
+import React from "react";
 import { useNavigate } from "react-router-dom";
 import {
   Card,
@@ -11,7 +12,7 @@ export default function StarterCard({
   starter,
 }: {
   starter: StarterProps;
-}): JSX.Element {
+}): React.JSX.Element {
   const navigate = useNavigate();
 
   return (

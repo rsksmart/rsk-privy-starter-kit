@@ -1,6 +1,7 @@
+import React from "react";
 import TokenTabs from "@/components/tokens/TokenTabs";
 
-export function Wagmi(): JSX.Element {
+export function Wagmi(): React.JSX.Element {
   return (
     <section>
       <div className="mx-auto mt-10 flex flex-col items-center justify-center max-w-[1100px]">

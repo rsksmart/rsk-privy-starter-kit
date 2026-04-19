@@ -1,6 +1,7 @@
+import React from "react";
 import Demo from "@/components/accountAbstraction/etherspot/Demo";
 
-export function Etherspot(): JSX.Element {
+export function Etherspot(): React.JSX.Element {
   return (
     <section>
       <div className="mx-auto mt-10 flex flex-col items-center justify-center max-w-[1100px]">
